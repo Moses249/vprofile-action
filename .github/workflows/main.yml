@@ -43,15 +43,6 @@ jobs:
            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/  
 
-      - name: Print Quality Gate JSON
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io        # 자가호스트면 해당 URL
-          SONAR_PROJECT_KEY: your_project_key           # 프로젝트 키
-          run: |
-            curl -s -u "$SONAR_TOKEN:" \
-            "$SONAR_HOST_URL/api/qualitygates/project_status?projectKey=$SONAR_PROJECT_KEY" \
-             | jq
 
         # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
